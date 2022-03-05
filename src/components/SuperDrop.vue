@@ -23,7 +23,9 @@ import State from '@/interfaces/State'
 
 const state: State = useStore().state
 
-const pot = reactive(state.pots[1])
+const potIndex = state.pots.findIndex(p => p.imageType === 'super_drop')
+
+const pot = reactive(state.pots[potIndex])
 const { currency, amount, prevAmount } = toRefs(pot)
 </script>
 
