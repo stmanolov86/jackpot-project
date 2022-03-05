@@ -1,6 +1,6 @@
 
 // The main state interface exported and used in components
-interface Pots {
+export interface Pots {
   type: string;
   amount: string;
   prevAmount: string;

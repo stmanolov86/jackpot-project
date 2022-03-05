@@ -49,18 +49,4 @@ onMounted(() => {
     min-width: 150px;
     max-width: 300px;
   }
-  .imageSize {
-    width: 20vw;
-    min-width: 150px;
-  }
-  .flex-stats {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  .win-amount {
-    font-size: xx-large;
-    color: #c69f27;
-    font-weight: 800;
-  }
 </style>

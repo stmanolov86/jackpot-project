@@ -4,7 +4,7 @@
       "type": "big",
       "amount": "1167.98",
       "currency": "$",
-      "mustDropIn": "00:00:26",
+      "mustDropIn": "00:02:26",
       "imageType": "daily_drop"
     },
     {
@@ -17,7 +17,7 @@
       "type": "medium",
       "amount": "129.78",
       "currency": "$",
-      "mustDropIn": "00:00:24",
+      "mustDropIn": "00:01:24",
       "imageType": "hourly_drop"
     }
   ]

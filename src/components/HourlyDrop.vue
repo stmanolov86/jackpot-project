@@ -1,23 +1,21 @@
 <template>
   <div class="hourly-wrap">
     <img src="@/assets/3.png" class="hourly-img" />
-    <div class="hourly-stats">
-      <div class="hourly-amount">
-        <vue3-autocounter
-          ref='counter'
-          :startAmount='+prevAmount'
-          :endAmount='+amount'
-          :duration='2'
-          :prefix=currency
-          separator=','
-          decimalSeparator='.'
-          :decimals='2'
-        />
-      </div>
+    <div class="hourly-amount">
+      <vue3-autocounter
+        ref='counter'
+        :startAmount='+prevAmount'
+        :endAmount='+amount'
+        :duration='2'
+        :prefix=currency
+        separator=','
+        decimalSeparator='.'
+        :decimals='2'
+      />
       <div class="hourly-drop">
-        Must drop in:
+        <span>Must drop in:</span>
         <i class="fa fa-clock-o"></i>
-        {{ state.pots[2].mustDropIn }}
+        <span>{{ state.pots[2].mustDropIn }}</span>
       </div>
     </div>
   </div>
@@ -39,15 +37,10 @@ const { currency, amount, prevAmount } = toRefs(pot)
 <style scoped>
   .hourly-wrap {
     background-image: url("@/assets/stars.png");
-    background-repeat: round;
-    background-size: auto;
+    background-size: cover;
     display: flex;
     justify-content: space-around;
     width: 100%;
-  }
-  .hourly-stats {
-    width: 50%;
-    margin: auto;
   }
   .hourly-img {
     width: 40%;
@@ -56,31 +49,26 @@ const { currency, amount, prevAmount } = toRefs(pot)
     margin: auto
   }
   .hourly-amount {
+    margin: auto;
     width: 100%;
-    font-size: 3vw;
+    text-align: center;
+    font-size: calc(12px + 1vw);
+    text-shadow: 1px 1px 0px black;
     color: #c69f27;
-    font-weight: 800;
+    font-weight: 700;
   }
   .hourly-drop {
     color: aliceblue;
+    margin: auto;
     width: 100%;
-    font-size: 0.5vw;
+    text-align: center;
+    font-size: 12px;
+    font-size: 8px;
+    font-size: calc(6px + 0.25vw);
+    font-weight: 700;
+    border-radius: 1rem;
+    line-height: 2;
+    background: #292d42;
   }
-
-  /* @media (min-width: 300px) {
-    .hourly-drop {
-      font-size: 26px;
-    }
-  }
-  @media (min-width: 250px) {
-    .hourly-drop {
-      font-size: 20px;
-    }
-  }
-  @media (min-width: 180px) {
-    .hourly-drop {
-      font-size: 15px;
-    }
-  } */
 
 </style>

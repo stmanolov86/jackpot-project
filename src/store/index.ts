@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import State from '@/interfaces/State'
+import State, { Pots } from '@/interfaces/State'
 import axios from 'axios'
 
 export default createStore({
@@ -22,6 +22,8 @@ export default createStore({
           ).toFixed(2)
         }
       }
+      // TODO update localStore on every pot update for the time being
+      localStorage.setItem('pots', JSON.stringify(state.pots))
     },
     updateTime (state: State, data) {
       data.seconds -= 1
@@ -31,20 +33,26 @@ export default createStore({
       const s = (data.seconds % 3600) % 60
 
       if (state.pots[data.i].mustDropIn && data.seconds >= 0) {
+        // TODO what happens when the counter reaches 0?
         state.pots[data.i].mustDropIn =
             (h < 10 ? '0' + h : h) + ':' +
             (m < 10 ? '0' + m : m) + ':' +
             (s < 10 ? '0' + s : s)
       }
     },
-    populatePots (state: State, data) {
-      state.pots = data
+    populatePots (state: State, data: Pots) {
+      // eperiment with local store for page refresh as there is no back-end yet
+      const pts = JSON.parse(localStorage.getItem('pots') || JSON.stringify(data))
+      state.pots = pts
+
       state.pots.forEach(pot => {
+        // create local previous amount value, so autocounter would pick up on it
         pot.prevAmount = pot.amount
       })
     }
   },
   actions: {
+    // get initial data from and populate the state
     async getPots ({ state, commit }) {
       await axios.get('data.json')
         .then(res => {
