@@ -29,28 +29,29 @@ const pot = reactive(state.pots[potIndex])
 const { currency, amount, prevAmount } = toRefs(pot)
 </script>
 
-<style scoped>
-  .super-wrap {
-    background-image: url("@/assets/stars.png");
-    background-size: cover;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin: 15% 0 15% 0;
-  }
-  .super-img {
-    width: 40%;
-    background-repeat: round;
-    background-size: cover;
-    margin: auto
-  }
-  .super-amount {
-    margin: auto;
-    max-width: 100%;
-    text-align: center;
-    font-size: calc(10px + 1vw);
-    text-shadow: 1px 1px 0px black;
-    color: #c69f27;
-    font-weight: 700;
-  }
+<style scoped lang="stylus">
+
+  .super-wrap
+    background-image url("@/assets/stars.png")
+    background-size cover
+    display flex
+    justify-content space-around
+    width 100%
+    margin 15% 0 15% 0
+
+  .super-img
+    width 40%
+    background-repeat round
+    background-size cover
+    margin auto
+
+  .super-amount
+    margin auto
+    max-width 100%
+    text-align center
+    font-size clamp(1rem, 2.1vw, 2rem)
+    text-shadow 1px 1px 0px black
+    color #c69f27
+    font-weight 700
+
 </style>

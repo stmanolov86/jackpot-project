@@ -14,8 +14,9 @@ export default createStore({
     },
     updatePots (state: State) {
       for (const i in state.pots) {
-        if (state.pots[i].amount && state.pots[i].mustDropIn !== '00:00:00') {
+        if (state.pots[i].amount && state.pots[i].must_drop_in !== '00:00:00') {
           state.pots[i].prevAmount = state.pots[i].amount
+
           state.pots[i].amount = (
             +state.pots[i].amount +
               (+state.pots[i].amount / 1000)
@@ -32,18 +33,18 @@ export default createStore({
       const m = Math.floor((data.seconds % 3600) / 60)
       const s = (data.seconds % 3600) % 60
 
-      if (state.pots[data.i].mustDropIn && data.seconds >= 0) {
+      if (state.pots[data.i].must_drop_in && data.seconds >= 0) {
         // TODO what happens when the counter reaches 0?
-        state.pots[data.i].mustDropIn =
+        state.pots[data.i].must_drop_in =
             (h < 10 ? '0' + h : h) + ':' +
             (m < 10 ? '0' + m : m) + ':' +
             (s < 10 ? '0' + s : s)
       }
     },
     populatePots (state: State, data: Pots) {
-      // eperiment with local store for page refresh as there is no back-end yet
-      const pts = JSON.parse(localStorage.getItem('pots') || JSON.stringify(data))
-      state.pots = pts
+      // eperiment with localStorage for page refresh as there is no back-end yet
+      const ptsData = JSON.parse(localStorage.getItem('pots') || JSON.stringify(data))
+      state.pots = ptsData
 
       state.pots.forEach(pot => {
         // create local previous amount value, so autocounter would pick up on it
@@ -58,6 +59,7 @@ export default createStore({
         .then(res => {
           commit('populatePots', res.data.pots)
         })
+
       commit('loaded', state)
     }
   },

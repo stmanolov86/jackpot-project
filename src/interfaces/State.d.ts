@@ -5,7 +5,7 @@ export interface Pots {
   amount: string;
   prevAmount: string;
   currency: string;
-  mustDropIn: string;
+  must_drop_in: string;
   imageType: string;
 }
 interface State {

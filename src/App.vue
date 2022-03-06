@@ -1,12 +1,12 @@
 <template>
-  <BlockingError v-if="state.loading" msg="Error Loading" />
+  <PageLoading v-if="state.loading" errorMsg="LOADING" />
   <Main v-else />
 </template>
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useStore } from 'vuex'
-import BlockingError from './components/BlockingError.vue'
+import PageLoading from './components/PageLoading.vue'
 import Main from './views/Main.vue'
 import State from '@/interfaces/State'
 
@@ -16,10 +16,10 @@ const state: State = store.state
 onMounted(() => {
   store.dispatch('getPots')
 
-  setInterval(function () {
+  const timeUpdate = () => {
     for (const i in state.pots) {
-      if (state.pots[i].mustDropIn) {
-        const sec = state.pots[i].mustDropIn.split(':').map(Number)
+      if (state.pots[i].must_drop_in) {
+        const sec = state.pots[i].must_drop_in.split(':').map(Number)
         const data = {
           i: i,
           seconds: sec[0] * 3600 + sec[1] * 60 + sec[2]
@@ -27,6 +27,10 @@ onMounted(() => {
         store.commit('updateTime', data)
       }
     }
+  }
+
+  setInterval(function () {
+    timeUpdate()
   }, 1000)
 
   setInterval(function () {
@@ -39,14 +43,7 @@ onMounted(() => {
 <style>
   body {
     background: #08091f;
-  }
-  .generalWidth {
-    margin: auto;
-    background-image: url("@/assets/bg.png");
-    height: 100vh;
-    min-height: 320px;
-    width: 20vw;
-    min-width: 150px;
-    max-width: 300px;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 </style>
