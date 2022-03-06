@@ -21,11 +21,12 @@ import { reactive, toRefs } from 'vue'
 import { useStore } from 'vuex'
 import State from '@/interfaces/State'
 
-const state: State = useStore().state
+const store = useStore()
+const state: State = store.state
+const getters = store.getters
 
-const potIndex = state.pots.findIndex(p => p.imageType === 'super_drop')
-
-const pot = reactive(state.pots[potIndex])
+const indx = getters.getPotIndex('super_drop')
+const pot = reactive(state.pots[indx])
 const { currency, amount, prevAmount } = toRefs(pot)
 </script>
 

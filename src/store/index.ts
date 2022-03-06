@@ -7,7 +7,14 @@ export default createStore({
     pots: [],
     loading: true
   },
-  getters: {},
+  getters: {
+    getPotIndex: (state: State) => (indx: string) => {
+      // TODO can we count on imageType or index the pots directly
+      const potIndex = state.pots.findIndex(pot => pot.imageType === indx)
+
+      return potIndex
+    }
+  },
   mutations: {
     loaded (state: State) {
       state.loading = false

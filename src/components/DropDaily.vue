@@ -28,10 +28,10 @@ import State from '@/interfaces/State'
 
 const store = useStore()
 const state: State = store.state
+const getters = store.getters
 
-// TODO can we count on imageType or index the pots directly
-const potIndex = state.pots.findIndex(p => p.imageType === 'daily_drop')
-const pot = reactive(state.pots[potIndex])
+const indx = getters.getPotIndex('daily_drop')
+const pot = reactive(state.pots[indx])
 const { currency, amount, prevAmount } = toRefs(pot)
 </script>
 
