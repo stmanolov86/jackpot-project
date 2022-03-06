@@ -33,7 +33,6 @@ const state: State = store.state
 const potIndex = state.pots.findIndex(p => p.imageType === 'daily_drop')
 const pot = reactive(state.pots[potIndex])
 const { currency, amount, prevAmount } = toRefs(pot)
-
 </script>
 
 <style scoped lang="stylus">

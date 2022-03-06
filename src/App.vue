@@ -37,10 +37,10 @@ onMounted(() => {
     store.commit('updatePots', state)
   }, 5000)
 })
-
 </script>
 
 <style lang="stylus">
+
   body
     background: #08091f;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
