@@ -1,5 +1,5 @@
 <template>
-  <div class="general-width">
+  <div class="general-width disable-select">
     <DropDaily />
     <DropSuper />
     <DropHourly />
@@ -22,5 +22,8 @@ import DropHourly from '@/components/DropHourly.vue'
     width 20vw
     min-width 150px
     max-width 300px
+
+  .disable-select
+    user-select: none;
 
 </style>
